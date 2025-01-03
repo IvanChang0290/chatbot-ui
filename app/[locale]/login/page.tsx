@@ -170,17 +170,17 @@ export default async function Login({
         <Brand />
 
         <Label className="text-md mt-4" htmlFor="email">
-          Email
+          Email信箱
         </Label>
         <Input
           className="mb-3 rounded-md border bg-inherit px-4 py-2"
           name="email"
-          placeholder="you@example.com"
+          placeholder="請輸入用戶信箱"
           required
         />
 
         <Label className="text-md" htmlFor="password">
-          Password
+          Password密碼
         </Label>
         <Input
           className="mb-6 rounded-md border bg-inherit px-4 py-2"
@@ -190,23 +190,23 @@ export default async function Login({
         />
 
         <SubmitButton className="mb-2 rounded-md bg-blue-700 px-4 py-2 text-white">
-          Login
+          登入
         </SubmitButton>
 
         <SubmitButton
           formAction={signUp}
           className="border-foreground/20 mb-2 rounded-md border px-4 py-2"
         >
-          Sign Up
+          註冊
         </SubmitButton>
 
         <div className="text-muted-foreground mt-1 flex justify-center text-sm">
-          <span className="mr-1">Forgot your password?</span>
+          <span className="mr-1">忘記密碼?</span>
           <button
             formAction={handleResetPassword}
             className="text-primary ml-1 underline hover:opacity-80"
           >
-            Reset
+            重新設定
           </button>
         </div>
 

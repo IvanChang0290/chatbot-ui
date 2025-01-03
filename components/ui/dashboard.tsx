@@ -20,8 +20,6 @@ interface DashboardProps {
 }
 
 export const Dashboard: FC<DashboardProps> = ({ children }) => {
-  useHotkey("s", () => setShowSidebar(prevState => !prevState))
-
   const pathname = usePathname()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -69,8 +67,6 @@ export const Dashboard: FC<DashboardProps> = ({ children }) => {
 
   return (
     <div className="flex size-full">
-      <CommandK />
-
       <div
         className={cn(
           "duration-200 dark:border-none " + (showSidebar ? "border-r-2" : "")

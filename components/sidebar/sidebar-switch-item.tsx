@@ -17,7 +17,8 @@ export const SidebarSwitchItem: FC<SidebarSwitchItemProps> = ({
   return (
     <WithTooltip
       display={
-        <div>{contentType[0].toUpperCase() + contentType.substring(1)}</div>
+        // <div>{contentType[0].toUpperCase() + contentType.substring(1)}</div>
+        <div>{"對話"}</div>
       }
       trigger={
         <TabsTrigger

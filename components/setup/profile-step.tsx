@@ -91,13 +91,13 @@ export const ProfileStep: FC<ProfileStepProps> = ({
     <>
       <div className="space-y-1">
         <div className="flex items-center space-x-2">
-          <Label>Username</Label>
+          <Label>帳戶名稱</Label>
 
           <div className="text-xs">
             {usernameAvailable ? (
-              <div className="text-green-500">AVAILABLE</div>
+              <div className="text-green-500">可使用</div>
             ) : (
-              <div className="text-red-500">UNAVAILABLE</div>
+              <div className="text-red-500">不可使用</div>
             )}
           </div>
         </div>
@@ -130,10 +130,10 @@ export const ProfileStep: FC<ProfileStepProps> = ({
       </div>
 
       <div className="space-y-1">
-        <Label>Chat Display Name</Label>
+        <Label>聊天姓名</Label>
 
         <Input
-          placeholder="Your Name"
+          placeholder="請輸入聊天姓名"
           value={displayName}
           onChange={e => onDisplayNameChange(e.target.value)}
           maxLength={PROFILE_DISPLAY_NAME_MAX}

@@ -95,7 +95,7 @@ export const SidebarDataList: FC<SidebarDataListProps> = ({
 
   const getSortedData = (
     data: any,
-    dateCategory: "Today" | "Yesterday" | "Previous Week" | "Older"
+    dateCategory: "今天" | "昨天" | "過去七天" | "更早以前"
   ) => {
     const now = new Date()
     const todayStart = new Date(now.setHours(0, 0, 0, 0))
@@ -110,13 +110,13 @@ export const SidebarDataList: FC<SidebarDataListProps> = ({
       .filter((item: any) => {
         const itemDate = new Date(item.updated_at || item.created_at)
         switch (dateCategory) {
-          case "Today":
+          case "今天":
             return itemDate >= todayStart
-          case "Yesterday":
+          case "昨天":
             return itemDate >= yesterdayStart && itemDate < todayStart
-          case "Previous Week":
+          case "過去七天":
             return itemDate >= oneWeekAgoStart && itemDate < yesterdayStart
-          case "Older":
+          case "更早以前":
             return itemDate < oneWeekAgoStart
           default:
             return true
@@ -227,7 +227,7 @@ export const SidebarDataList: FC<SidebarDataListProps> = ({
         {data.length === 0 && (
           <div className="flex grow flex-col items-center justify-center">
             <div className=" text-centertext-muted-foreground p-8 text-lg italic">
-              No {contentType}.
+              沒有對話歷史.
             </div>
           </div>
         )}
@@ -263,15 +263,15 @@ export const SidebarDataList: FC<SidebarDataListProps> = ({
 
             {contentType === "chats" ? (
               <>
-                {["Today", "Yesterday", "Previous Week", "Older"].map(
+                {["今天", "昨天", "過去七天", "更早以前"].map(
                   dateCategory => {
                     const sortedData = getSortedData(
                       dataWithoutFolders,
                       dateCategory as
-                        | "Today"
-                        | "Yesterday"
-                        | "Previous Week"
-                        | "Older"
+                        | "今天"
+                        | "昨天"
+                        | "過去七天"
+                        | "更早以前"
                     )
 
                     return (

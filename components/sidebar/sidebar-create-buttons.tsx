@@ -99,11 +99,12 @@ export const SidebarCreateButtons: FC<SidebarCreateButtonsProps> = ({
     <div className="flex w-full space-x-2">
       <Button className="flex h-[36px] grow" onClick={getCreateFunction()}>
         <IconPlus className="mr-1" size={20} />
-        New{" "}
+        {/* New{" "}
         {contentType.charAt(0).toUpperCase() +
-          contentType.slice(1, contentType.length - 1)}
+          contentType.slice(1, contentType.length - 1)} */}
+          新增對話
       </Button>
-
+{/* 
       {hasData && (
         <Button className="size-[36px] p-1" onClick={handleCreateFolder}>
           <IconFolderPlus size={20} />
@@ -151,7 +152,7 @@ export const SidebarCreateButtons: FC<SidebarCreateButtonsProps> = ({
           isOpen={isCreatingModel}
           onOpenChange={setIsCreatingModel}
         />
-      )}
+      )} */}
     </div>
   )
 }

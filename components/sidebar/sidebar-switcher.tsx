@@ -33,7 +33,7 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = ({
           onContentTypeChange={onContentTypeChange}
         />
 
-        <SidebarSwitchItem
+        {/* <SidebarSwitchItem
           icon={<IconAdjustmentsHorizontal size={SIDEBAR_ICON_SIZE} />}
           contentType="presets"
           onContentTypeChange={onContentTypeChange}
@@ -73,10 +73,10 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = ({
           icon={<IconBolt size={SIDEBAR_ICON_SIZE} />}
           contentType="tools"
           onContentTypeChange={onContentTypeChange}
-        />
+        /> */}
       </TabsList>
 
-      <div className="flex flex-col items-center space-y-4">
+      <div className="flex flex-col items-center space">
         {/* TODO */}
         {/* <WithTooltip display={<div>Import</div>} trigger={<Import />} /> */}
 
@@ -84,7 +84,7 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = ({
         {/* <Alerts /> */}
 
         <WithTooltip
-          display={<div>Profile Settings</div>}
+          display={<div>用戶設定</div>}
           trigger={<ProfileSettings />}
         />
       </div>
