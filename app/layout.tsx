@@ -73,16 +73,23 @@ export default async function RootLayout({
       }
     }
   )
-  const session = (await supabase.auth.getSession()).data.session
+
+  // Auto sign-in with shared account
+  const { data: { session } } = await supabase.auth.signInWithPassword({
+    email: process.env.NEXT_PUBLIC_SHARED_EMAIL!,
+    password: process.env.NEXT_PUBLIC_SHARED_PASSWORD!
+  })
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers attribute="class" defaultTheme="dark">
-          <Toaster richColors position="top-center" duration={3000} />
-          <div className="bg-background text-foreground flex h-dvh flex-col items-center overflow-x-auto">
-            {session ? <GlobalState>{children}</GlobalState> : children}
-          </div>
+          <GlobalState>
+            <div className="bg-background text-foreground flex h-dvh flex-col items-center overflow-x-auto">
+              {children}
+            </div>
+            <Toaster richColors position="top-center" duration={3000} />
+          </GlobalState>
         </Providers>
       </body>
     </html>
