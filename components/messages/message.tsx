@@ -23,6 +23,7 @@ import { TextareaAutosize } from "../ui/textarea-autosize"
 import { WithTooltip } from "../ui/with-tooltip"
 import { MessageActions } from "./message-actions"
 import { MessageMarkdown } from "./message-markdown"
+import { MessageFeedback } from "./message-feedback"
 
 const ICON_SIZE = 32
 
@@ -114,6 +115,21 @@ export const Message: FC<MessageProps> = ({
 
   const handleStartEdit = () => {
     onStartEdit(message)
+  }
+
+  const handleFeedback = async (
+    messageId: string,
+    isLike: boolean,
+    option?: string,
+    detail?: string
+  ) => {
+    // TODO: Implement feedback storage logic
+    console.log("Feedback:", {
+      messageId,
+      isLike,
+      option,
+      detail
+    })
   }
 
   useEffect(() => {
@@ -270,32 +286,7 @@ export const Message: FC<MessageProps> = ({
           isGenerating &&
           isLast &&
           message.role === "assistant" ? (
-            <>
-              {(() => {
-                switch (toolInUse) {
-                  case "none":
-                    return (
-                      <IconCircleFilled className="animate-pulse" size={20} />
-                    )
-                  case "retrieval":
-                    return (
-                      <div className="flex animate-pulse items-center space-x-2">
-                        <IconFileText size={20} />
-
-                        <div>Searching files...</div>
-                      </div>
-                    )
-                  default:
-                    return (
-                      <div className="flex animate-pulse items-center space-x-2">
-                        <IconBolt size={20} />
-
-                        <div>Using {toolInUse}...</div>
-                      </div>
-                    )
-                }
-              })()}
-            </>
+            <></>
           ) : isEditing ? (
             <TextareaAutosize
               textareaRef={editInputRef}
@@ -323,59 +314,19 @@ export const Message: FC<MessageProps> = ({
                 <IconCaretRightFilled className="ml-1" />
               </div>
             ) : (
-              <>
-                <div
-                  className="flex cursor-pointer items-center text-lg hover:opacity-50"
-                  onClick={() => setViewSources(false)}
-                >
-                  {fileItems.length}
-                  {fileItems.length > 1 ? " Sources " : " Source "}
-                  from {Object.keys(fileSummary).length}{" "}
-                  {Object.keys(fileSummary).length > 1 ? "Files" : "File"}{" "}
-                  <IconCaretDownFilled className="ml-1" />
-                </div>
-
-                <div className="mt-3 space-y-4">
-                  {Object.values(fileSummary).map((file, index) => (
-                    <div key={index}>
-                      <div className="flex items-center space-x-2">
-                        <div>
-                          <FileIcon type={file.type} />
-                        </div>
-
-                        <div className="truncate">{file.name}</div>
-                      </div>
-
-                      {fileItems
-                        .filter(fileItem => {
-                          const parentFile = files.find(
-                            parentFile => parentFile.id === fileItem.file_id
-                          )
-                          return parentFile?.id === file.id
-                        })
-                        .map((fileItem, index) => (
-                          <div
-                            key={index}
-                            className="ml-8 mt-1.5 flex cursor-pointer items-center space-x-2 hover:opacity-50"
-                            onClick={() => {
-                              setSelectedFileItem(fileItem)
-                              setShowFileItemPreview(true)
-                            }}
-                          >
-                            <div className="text-sm font-normal">
-                              <span className="mr-1 text-lg font-bold">-</span>{" "}
-                              {fileItem.content.substring(0, 200)}...
-                            </div>
-                          </div>
-                        ))}
-                    </div>
-                  ))}
-                </div>
-              </>
+              <></>
             )}
           </div>
         )}
 
+        {message.role === "assistant" && isLast && !isEditing && (
+          <div className="flex justify-start">
+            <MessageFeedback
+              messageId={message.id}
+              onFeedback={handleFeedback}
+            />
+          </div>
+        )}
         <div className="mt-3 flex flex-wrap gap-2">
           {message.image_paths.map((path, index) => {
             const item = chatImages.find(image => image.path === path)

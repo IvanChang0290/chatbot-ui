@@ -24,6 +24,7 @@ export const getWorkspaceById = async (workspaceId: string) => {
     .single()
 
   if (!workspace) {
+    console.log(workspaceId)
     throw new Error(error.message)
   }
 

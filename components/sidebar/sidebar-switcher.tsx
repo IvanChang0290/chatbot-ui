@@ -13,6 +13,7 @@ import { FC } from "react"
 import { TabsList } from "../ui/tabs"
 import { WithTooltip } from "../ui/with-tooltip"
 import { ProfileSettings } from "../utility/profile-settings"
+import { ProfileSettingsNew } from "../utility/profile-new"
 import { SidebarSwitchItem } from "./sidebar-switch-item"
 
 export const SIDEBAR_ICON_SIZE = 28
@@ -26,12 +27,14 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = ({
 }) => {
   return (
     <div className="flex flex-col justify-between border-r-2 pb-5">
-      <TabsList className="bg-background grid h-[440px] grid-rows-7">
+      <div className="grid h-[180px] grid-rows-3 mt-[20px]">
+      <TabsList className="bg-background">
         <SidebarSwitchItem
           icon={<IconMessage size={SIDEBAR_ICON_SIZE} />}
           contentType="chats"
           onContentTypeChange={onContentTypeChange}
         />
+
 
         {/* <SidebarSwitchItem
           icon={<IconAdjustmentsHorizontal size={SIDEBAR_ICON_SIZE} />}
@@ -74,18 +77,29 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = ({
           contentType="tools"
           onContentTypeChange={onContentTypeChange}
         /> */}
-      </TabsList>
+      </TabsList>        
 
-      <div className="flex flex-col items-center space">
-        {/* TODO */}
-        {/* <WithTooltip display={<div>Import</div>} trigger={<Import />} /> */}
-
-        {/* TODO */}
-        {/* <Alerts /> */}
-
+      <div className="flex flex-col items-center">
         <WithTooltip
           display={<div>用戶設定</div>}
-          trigger={<ProfileSettings />}
+          trigger={<ProfileSettingsNew />}
+        />
+      </div>
+
+      <div className="flex flex-col items-center">
+        <WithTooltip
+          display={<div>用戶設定</div>}
+          trigger={<ProfileSettingsNew />}
+        />
+      </div>
+      
+      </div>
+
+      
+      <div className="flex flex-col items-center space">
+        <WithTooltip
+          display={<div>用戶設定</div>}
+          trigger={<ProfileSettings/>}
         />
       </div>
     </div>

@@ -49,6 +49,10 @@ module.exports = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
+        },
+        customBlue: {
+          DEFAULT: '#1E40AF', // Blue-600 from Tailwind's default colors
+          foreground: '#60A5FA', // Blue-400
         }
       },
       borderRadius: {

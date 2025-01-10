@@ -10,10 +10,10 @@ import { ReactNode } from "react"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
-const APP_NAME = "Chatbot UI"
-const APP_DEFAULT_TITLE = "Chatbot UI"
-const APP_TITLE_TEMPLATE = "%s - Chatbot UI"
-const APP_DESCRIPTION = "Chabot UI PWA!"
+const APP_NAME = "新UI"
+const APP_DEFAULT_TITLE = "新UI"
+const APP_TITLE_TEMPLATE = "%s - 新UI"
+const APP_DESCRIPTION = "新UI PWA!"
 
 interface RootLayoutProps {
   children: ReactNode
@@ -74,11 +74,7 @@ export default async function RootLayout({
     }
   )
 
-  // Auto sign-in with shared account
-  const { data: { session } } = await supabase.auth.signInWithPassword({
-    email: process.env.NEXT_PUBLIC_SHARED_EMAIL!,
-    password: process.env.NEXT_PUBLIC_SHARED_PASSWORD!
-  })
+
 
   return (
     <html lang="en" suppressHydrationWarning>
