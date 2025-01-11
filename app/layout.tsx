@@ -79,7 +79,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Providers attribute="class" defaultTheme="dark">
+        <Providers attribute="class" defaultTheme="light">
           <GlobalState>
             <div className="bg-background text-foreground flex h-dvh flex-col items-center overflow-x-auto">
               {children}

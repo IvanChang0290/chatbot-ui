@@ -81,14 +81,14 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = ({
 
       <div className="flex flex-col items-center">
         <WithTooltip
-          display={<div>用戶設定</div>}
+          display={<div>權限管理</div>}
           trigger={<ProfileSettingsNew />}
         />
       </div>
 
       <div className="flex flex-col items-center">
         <WithTooltip
-          display={<div>用戶設定</div>}
+          display={<div>下載管理</div>}
           trigger={<ProfileSettingsNew />}
         />
       </div>

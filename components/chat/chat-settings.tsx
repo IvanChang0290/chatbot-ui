@@ -1,7 +1,7 @@
 import { ChatbotUIContext } from "@/context/context"
 import { CHAT_SETTING_LIMITS } from "@/lib/chat-setting-limits"
 import useHotkey from "@/lib/hooks/use-hotkey"
-import { LLMID, ModelProvider } from "@/types"
+import { LLMID, ModelProvider, LLM } from "@/types"
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react"
 import { FC, useContext, useEffect, useRef } from "react"
 import { Button } from "../ui/button"
@@ -48,6 +48,21 @@ export const ChatSettings: FC<ChatSettingsProps> = ({}) => {
 
   if (!chatSettings) return null
 
+  const defaultModel: LLM = {
+    modelId: "gemini-pro",
+    modelName: "Gemini Pro",
+    provider: "google",
+    hostedId: "gemini-pro",
+    platformLink: "https://ai.google.dev/models/gemini",
+    imageInput: false,
+    pricing: {
+      currency: "USD",
+      unit: "1M tokens",
+      inputCost: 0.00025,
+      outputCost: 0.0005
+    }
+  }
+
   const allModels = [
     ...models.map(model => ({
       modelId: model.model_id as LLMID,
@@ -59,7 +74,8 @@ export const ChatSettings: FC<ChatSettingsProps> = ({}) => {
     })),
     ...availableHostedModels,
     ...availableLocalModels,
-    ...availableOpenRouterModels
+    ...availableOpenRouterModels,
+    defaultModel
   ]
 
   const fullModel = allModels.find(llm => llm.modelId === chatSettings.model)
