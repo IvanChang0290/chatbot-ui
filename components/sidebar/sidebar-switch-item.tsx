@@ -14,15 +14,25 @@ export const SidebarSwitchItem: FC<SidebarSwitchItemProps> = ({
   icon,
   onContentTypeChange
 }) => {
+  const getTooltipText = (type: ContentType) => {
+    switch (type) {
+      case "chats":
+        return "對話"
+      case "permissions":
+        return "權限管理"
+      case "downloads":
+        return "下載管理"
+      default:
+        return type[0].toUpperCase() + type.substring(1)
+    }
+  }
+
   return (
     <WithTooltip
-      display={
-        // <div>{contentType[0].toUpperCase() + contentType.substring(1)}</div>
-        <div>{"對話"}</div>
-      }
+      display={<div>{getTooltipText(contentType)}</div>}
       trigger={
         <TabsTrigger
-          className="hover:opacity-50"
+          className="hover:opacity-50 data-[state=active]:bg-muted/50"
           value={contentType}
           onClick={() => onContentTypeChange(contentType as ContentType)}
         >

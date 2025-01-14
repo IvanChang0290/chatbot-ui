@@ -3,7 +3,9 @@ import {
   IconAdjustmentsHorizontal,
   IconBolt,
   IconBooks,
+  IconDownload,
   IconFile,
+  IconLock,
   IconMessage,
   IconPencil,
   IconRobotFace,
@@ -13,7 +15,6 @@ import { FC } from "react"
 import { TabsList } from "../ui/tabs"
 import { WithTooltip } from "../ui/with-tooltip"
 import { ProfileSettings } from "../utility/profile-settings"
-import { ProfileSettingsNew } from "../utility/profile-new"
 import { SidebarSwitchItem } from "./sidebar-switch-item"
 
 export const SIDEBAR_ICON_SIZE = 28
@@ -26,77 +27,30 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = ({
   onContentTypeChange
 }) => {
   return (
-    <div className="flex flex-col justify-between border-r-2 pb-5">
-      <div className="grid h-[180px] grid-rows-3 mt-[20px]">
-      <TabsList className="bg-background">
-        <SidebarSwitchItem
-          icon={<IconMessage size={SIDEBAR_ICON_SIZE} />}
-          contentType="chats"
-          onContentTypeChange={onContentTypeChange}
-        />
+    <div className="flex flex-col justify-between border-r-2 h-full pb-5">
+      <div className="flex flex-col space-y-4 mt-[60px]">
+        <TabsList className="flex flex-col bg-transparent space-y-2 p-2">
+          <SidebarSwitchItem
+            icon={<IconMessage size={SIDEBAR_ICON_SIZE} />}
+            contentType="chats"
+            onContentTypeChange={onContentTypeChange}
+          />
 
+          <SidebarSwitchItem
+            icon={<IconLock size={SIDEBAR_ICON_SIZE} />}
+            contentType="permissions"
+            onContentTypeChange={onContentTypeChange}
+          />
 
-        {/* <SidebarSwitchItem
-          icon={<IconAdjustmentsHorizontal size={SIDEBAR_ICON_SIZE} />}
-          contentType="presets"
-          onContentTypeChange={onContentTypeChange}
-        />
-
-        <SidebarSwitchItem
-          icon={<IconPencil size={SIDEBAR_ICON_SIZE} />}
-          contentType="prompts"
-          onContentTypeChange={onContentTypeChange}
-        />
-
-        <SidebarSwitchItem
-          icon={<IconSparkles size={SIDEBAR_ICON_SIZE} />}
-          contentType="models"
-          onContentTypeChange={onContentTypeChange}
-        />
-
-        <SidebarSwitchItem
-          icon={<IconFile size={SIDEBAR_ICON_SIZE} />}
-          contentType="files"
-          onContentTypeChange={onContentTypeChange}
-        />
-
-        <SidebarSwitchItem
-          icon={<IconBooks size={SIDEBAR_ICON_SIZE} />}
-          contentType="collections"
-          onContentTypeChange={onContentTypeChange}
-        />
-
-        <SidebarSwitchItem
-          icon={<IconRobotFace size={SIDEBAR_ICON_SIZE} />}
-          contentType="assistants"
-          onContentTypeChange={onContentTypeChange}
-        />
-
-        <SidebarSwitchItem
-          icon={<IconBolt size={SIDEBAR_ICON_SIZE} />}
-          contentType="tools"
-          onContentTypeChange={onContentTypeChange}
-        /> */}
-      </TabsList>        
-
-      <div className="flex flex-col items-center">
-        <WithTooltip
-          display={<div>權限管理</div>}
-          trigger={<ProfileSettingsNew />}
-        />
+          <SidebarSwitchItem
+            icon={<IconDownload size={SIDEBAR_ICON_SIZE} />}
+            contentType="downloads"
+            onContentTypeChange={onContentTypeChange}
+          />
+        </TabsList>
       </div>
 
       <div className="flex flex-col items-center">
-        <WithTooltip
-          display={<div>下載管理</div>}
-          trigger={<ProfileSettingsNew />}
-        />
-      </div>
-      
-      </div>
-
-      
-      <div className="flex flex-col items-center space">
         <WithTooltip
           display={<div>用戶設定</div>}
           trigger={<ProfileSettings/>}

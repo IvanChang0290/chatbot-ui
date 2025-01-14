@@ -4,9 +4,9 @@ import { ContentType } from "@/types"
 import { FC, useContext } from "react"
 import { SIDEBAR_WIDTH } from "../ui/dashboard"
 import { TabsContent } from "../ui/tabs"
-import { WorkspaceSwitcher } from "../utility/workspace-switcher"
-import { WorkspaceSettings } from "../workspace/workspace-settings"
 import { SidebarContent } from "./sidebar-content"
+import { PermissionsContent } from "../settings/permissions-content"
+import { DownloadsContent } from "../settings/downloads-content"
 
 interface SidebarProps {
   contentType: ContentType
@@ -50,62 +50,61 @@ export const Sidebar: FC<SidebarProps> = ({ contentType, showSidebar }) => {
   }
 
   return (
-    <TabsContent
-      className="m-0 w-full space-y-2"
+    <div
       style={{
-        // Sidebar - SidebarSwitcher
-        minWidth: showSidebar ? `calc(${SIDEBAR_WIDTH}px - 60px)` : "0px",
-        maxWidth: showSidebar ? `calc(${SIDEBAR_WIDTH}px - 60px)` : "0px",
-        width: showSidebar ? `calc(${SIDEBAR_WIDTH}px - 60px)` : "0px"
+        width: showSidebar ? `calc(${SIDEBAR_WIDTH}px-0px)` : "0px"
       }}
-      value={contentType}
     >
-      <div className="flex h-full flex-col p-3">
-        {/* <div className="flex items-center border-b-2 pb-2">
-          <WorkspaceSwitcher />
+      <div className="flex h-full flex-col p-4">
+        <div className="flex-1 overflow-auto">
+          <TabsContent value={contentType} className="m-0 w-full">
+            {(() => {
+              switch (contentType) {
+                case "chats":
+                  return renderSidebarContent("chats", chats, chatFolders)
 
-          <WorkspaceSettings />
-        </div> */}
+                case "presets":
+                  return renderSidebarContent("presets", presets, presetFolders)
 
-        {(() => {
-          switch (contentType) {
-            case "chats":
-              return renderSidebarContent("chats", chats, chatFolders)
+                case "prompts":
+                  return renderSidebarContent("prompts", prompts, promptFolders)
 
-            case "presets":
-              return renderSidebarContent("presets", presets, presetFolders)
+                case "files":
+                  return renderSidebarContent("files", files, filesFolders)
 
-            case "prompts":
-              return renderSidebarContent("prompts", prompts, promptFolders)
+                case "collections":
+                  return renderSidebarContent(
+                    "collections",
+                    collections,
+                    collectionFolders
+                  )
 
-            case "files":
-              return renderSidebarContent("files", files, filesFolders)
+                case "assistants":
+                  return renderSidebarContent(
+                    "assistants",
+                    assistants,
+                    assistantFolders
+                  )
 
-            case "collections":
-              return renderSidebarContent(
-                "collections",
-                collections,
-                collectionFolders
-              )
+                case "tools":
+                  return renderSidebarContent("tools", tools, toolFolders)
 
-            case "assistants":
-              return renderSidebarContent(
-                "assistants",
-                assistants,
-                assistantFolders
-              )
+                case "models":
+                  return renderSidebarContent("models", models, modelFolders)
 
-            case "tools":
-              return renderSidebarContent("tools", tools, toolFolders)
+                case "permissions":
+                  return <div className="mt-2 px-2"><PermissionsContent /></div>
 
-            case "models":
-              return renderSidebarContent("models", models, modelFolders)
+                case "downloads":
+                  return <div className="mt-2 px-2"><DownloadsContent /></div>
 
-            default:
-              return null
-          }
-        })()}
+                default:
+                  return null
+              }
+            })()}
+          </TabsContent>
+        </div>
       </div>
-    </TabsContent>
+    </div>
   )
 }
