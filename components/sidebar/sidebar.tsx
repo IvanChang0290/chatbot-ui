@@ -50,61 +50,62 @@ export const Sidebar: FC<SidebarProps> = ({ contentType, showSidebar }) => {
   }
 
   return (
-    <div
+    <TabsContent
+      className="m-0 w-full space-y-2"
       style={{
-        width: showSidebar ? `calc(${SIDEBAR_WIDTH}px-0px)` : "0px"
+        // Sidebar - SidebarSwitcher
+        minWidth: showSidebar ? `calc(${SIDEBAR_WIDTH}px - 60px)` : "0px",
+        maxWidth: showSidebar ? `calc(${SIDEBAR_WIDTH}px - 60px)` : "0px",
+        width: showSidebar ? `calc(${SIDEBAR_WIDTH}px - 60px)` : "0px"
       }}
+      value={contentType}
     >
       <div className="flex h-full flex-col p-4">
-        <div className="flex-1 overflow-auto">
-          <TabsContent value={contentType} className="m-0 w-full">
-            {(() => {
-              switch (contentType) {
-                case "chats":
-                  return renderSidebarContent("chats", chats, chatFolders)
+        {(() => {
+          switch (contentType) {
+            case "chats":
+              return renderSidebarContent("chats", chats, chatFolders)
 
-                case "presets":
-                  return renderSidebarContent("presets", presets, presetFolders)
+            case "presets":
+              return renderSidebarContent("presets", presets, presetFolders)
 
-                case "prompts":
-                  return renderSidebarContent("prompts", prompts, promptFolders)
+            case "prompts":
+              return renderSidebarContent("prompts", prompts, promptFolders)
 
-                case "files":
-                  return renderSidebarContent("files", files, filesFolders)
+            case "files":
+              return renderSidebarContent("files", files, filesFolders)
 
-                case "collections":
-                  return renderSidebarContent(
-                    "collections",
-                    collections,
-                    collectionFolders
-                  )
+            case "collections":
+              return renderSidebarContent(
+                "collections",
+                collections,
+                collectionFolders
+              )
 
-                case "assistants":
-                  return renderSidebarContent(
-                    "assistants",
-                    assistants,
-                    assistantFolders
-                  )
+            case "assistants":
+              return renderSidebarContent(
+                "assistants",
+                assistants,
+                assistantFolders
+              )
 
-                case "tools":
-                  return renderSidebarContent("tools", tools, toolFolders)
+            case "tools":
+              return renderSidebarContent("tools", tools, toolFolders)
 
-                case "models":
-                  return renderSidebarContent("models", models, modelFolders)
+            case "models":
+              return renderSidebarContent("models", models, modelFolders)
 
-                case "permissions":
-                  return <div className="mt-2 px-2"><PermissionsContent /></div>
+            case "permissions":
+              return <div><PermissionsContent/></div>
 
-                case "downloads":
-                  return <div className="mt-2 px-2"><DownloadsContent /></div>
+            case "downloads":
+              return <div><DownloadsContent/></div>
 
-                default:
-                  return null
-              }
-            })()}
-          </TabsContent>
-        </div>
+            default:
+              return null
+          }
+        })()}
       </div>
-    </div>
+    </TabsContent>
   )
 }

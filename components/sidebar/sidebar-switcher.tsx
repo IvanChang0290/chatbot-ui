@@ -27,9 +27,8 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = ({
   onContentTypeChange
 }) => {
   return (
-    <div className="flex flex-col justify-between border-r-2 h-full pb-5">
-      <div className="flex flex-col space-y-4 mt-[60px]">
-        <TabsList className="flex flex-col bg-transparent space-y-2 p-2">
+        <div className="flex flex-col justify-between border-r-2 pb-5">
+      <TabsList className="bg-background grid h-[180px] grid-rows-3 mt-[8px]">
           <SidebarSwitchItem
             icon={<IconMessage size={SIDEBAR_ICON_SIZE} />}
             contentType="chats"
@@ -48,7 +47,6 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = ({
             onContentTypeChange={onContentTypeChange}
           />
         </TabsList>
-      </div>
 
       <div className="flex flex-col items-center">
         <WithTooltip
