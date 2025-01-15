@@ -5,17 +5,18 @@ import { exportLocalStorageAsJSON } from "@/lib/export-old-data"
 interface DownloadsContentProps {}
 
 export const DownloadsContent: FC<DownloadsContentProps> = () => {
+  const handleOpenDownloads = () => {
+    window.location.href = 'https://google.com';
+  }
+
   return (
     <div className="p-4">
       <Button 
         className="w-full"
-        onClick={exportLocalStorageAsJSON}
+        onClick={handleOpenDownloads}
       >
-        下載聊天記錄
+        前往下載
       </Button>
-      <p className="text-sm text-muted-foreground mt-2">
-        下載 Chatbot UI 1.0 數據為 JSON 格式
-      </p>
     </div>
   )
 }
