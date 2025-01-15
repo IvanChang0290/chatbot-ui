@@ -23,6 +23,10 @@ export const ProfileSettings: FC<ProfileSettingsProps> = ({}) => {
     return
   }
 
+  const companytitle = '公司名稱';
+  const departmenttitle = '部門名稱';
+  const positiontitle = '職位名稱'; 
+
   if (!profile) return null
 
   return (
@@ -68,6 +72,35 @@ export const ProfileSettings: FC<ProfileSettingsProps> = ({}) => {
                 {profile.display_name || "No display name set"}
               </div>
             </div>
+
+            <div className="space-y-1">
+              <Label>公司名稱</Label>
+              <div className="p-2 rounded-md bg-secondary">
+                {companytitle || "No display name set"}
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <Label>部門名稱</Label>
+              <div className="p-2 rounded-md bg-secondary">
+              {departmenttitle || "No display name set"}
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <Label>職位名稱</Label>
+              <div className="p-2 rounded-md bg-secondary">
+              {positiontitle || "No display name set"}
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <Label>權限</Label>
+              <div className="p-2 rounded-md bg-secondary">
+              {"No display name set"}
+              </div>
+            </div>
+
           </div>
         </div>
       </SheetContent>
