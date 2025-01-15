@@ -10,11 +10,6 @@ export default function HomePage() {
   const {
     profile,
     setProfile,
-    setWorkspaces,
-    setSelectedWorkspace,
-    setEnvKeyMap,
-    setAvailableHostedModels,
-    setAvailableOpenRouterModels
   } = useContext(ChatbotUIContext)
 
   useEffect(() => {

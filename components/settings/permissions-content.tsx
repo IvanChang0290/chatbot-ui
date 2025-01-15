@@ -5,7 +5,7 @@ interface PermissionsContentProps {}
 
 export const PermissionsContent: FC<PermissionsContentProps> = () => {
   const handleOpenPermissions = () => {
-    window.open('https://google.com', '_blank')
+    window.location.href = 'https://google.com';
   }
 
   return (

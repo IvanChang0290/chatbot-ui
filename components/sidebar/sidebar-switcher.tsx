@@ -49,7 +49,7 @@ export const SidebarSwitcher: FC<SidebarSwitcherProps> = ({
         </TabsList>
 
       <div className="flex flex-col items-center">
-        <WithTooltip
+        <WithTooltip 
           display={<div>用戶設定</div>}
           trigger={<ProfileSettings/>}
         />
