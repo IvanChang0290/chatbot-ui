@@ -23,6 +23,7 @@ import { TextareaAutosize } from "../ui/textarea-autosize"
 import { WithTooltip } from "../ui/with-tooltip"
 import { MessageActions } from "./message-actions"
 import { MessageMarkdown } from "./message-markdown"
+import { RecommendedQuestions } from "../chat/recommended-questions"
 
 const ICON_SIZE = 32
 
@@ -59,7 +60,8 @@ export const Message: FC<MessageProps> = ({
     assistantImages,
     toolInUse,
     files,
-    models
+    models,
+    setUserInput
   } = useContext(ChatbotUIContext)
 
   const { handleSendMessage } = useChatHandler()
@@ -309,6 +311,21 @@ export const Message: FC<MessageProps> = ({
             <MessageMarkdown content={message.content} />
           )}
         </div>
+
+        {message.role === "assistant" && (
+          <RecommendedQuestions 
+            isVisible={isLast}
+            isNewMessage={isLast && message.role === "assistant"} 
+            onQuestionClick={(question) => {
+              setUserInput(question)
+              // Focus the input after setting the value
+              const textarea = document.querySelector('textarea[name="prompt"]') as HTMLTextAreaElement
+              if (textarea) {
+                textarea.focus()
+              }
+            }} 
+          />
+        )}
 
         {fileItems.length > 0 && (
           <div className="border-primary mt-6 border-t pt-4 font-bold">
