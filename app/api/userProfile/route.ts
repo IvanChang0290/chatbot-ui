@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
     try {
-        // Simulated data retrieval, replace with actual database calls if needed
+
         const userProfile = {
             company: '1',
             department: '2',

@@ -24,6 +24,8 @@ import { WithTooltip } from "../ui/with-tooltip"
 import { MessageActions } from "./message-actions"
 import { MessageMarkdown } from "./message-markdown"
 import { RecommendedQuestions } from "../chat/recommended-questions"
+import { MessageFeedback } from "./message-feedback"
+
 
 const ICON_SIZE = 32
 
@@ -117,6 +119,22 @@ export const Message: FC<MessageProps> = ({
   const handleStartEdit = () => {
     onStartEdit(message)
   }
+
+  const handleFeedback = async (
+    messageId: string,
+    isLike: boolean,
+    option?: string,
+    detail?: string
+  ) => {
+    // TODO: Implement feedback storage logic
+    console.log("Feedback:", {
+      messageId,
+      isLike,
+      option,
+      detail
+    })
+  }
+
 
   useEffect(() => {
     setEditedMessage(message.content)
@@ -318,7 +336,6 @@ export const Message: FC<MessageProps> = ({
             isNewMessage={isLast && message.role === "assistant"} 
             onQuestionClick={(question) => {
               setUserInput(question)
-              // Focus the input after setting the value
               const textarea = document.querySelector('textarea[name="prompt"]') as HTMLTextAreaElement
               if (textarea) {
                 textarea.focus()
@@ -393,6 +410,15 @@ export const Message: FC<MessageProps> = ({
             )}
           </div>
         )}
+        {/* {message.role === "assistant" && isLast && !isEditing && (
+          <div className="flex justify-start">
+            <MessageFeedback
+              messageId={message.id}
+              onFeedback={handleFeedback}
+            />
+          </div>
+        )} */}
+
         <div className="mt-3 flex flex-wrap gap-2">
           {message.image_paths.map((path, index) => {
             const item = chatImages.find(image => image.path === path)

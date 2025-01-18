@@ -1,6 +1,6 @@
 import { ModelProvider } from "."
 
-export type LLMID = "gemini-pro" // Gemini Pro
+export type LLMID = "gemini-pro" | "custom-model"
 
 export interface LLM {
   modelId: LLMID
