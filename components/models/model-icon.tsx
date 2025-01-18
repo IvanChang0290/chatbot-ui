@@ -6,7 +6,7 @@ import { ModelProvider } from "@/types"
 import { IconSparkles } from "@tabler/icons-react"
 import { useTheme } from "next-themes"
 import Image from "next/image"
-import { FC, HTMLAttributes } from "react"
+import { FC, HTMLAttributes, MouseEventHandler } from "react"
 import { AnthropicSVG } from "../icons/anthropic-svg"
 import { GoogleSVG } from "../icons/google-svg"
 import { OpenAISVG } from "../icons/openai-svg"
@@ -99,6 +99,18 @@ export const ModelIcon: FC<ModelIconProps> = ({
           alt="Mistral"
           width={width}
           height={height}
+        />
+      )
+    case "custom":
+      return (
+        <IconSparkles
+          className={cn(
+            "rounded-sm p-1",
+            theme === "dark" ? "bg-white text-black" : "border-DEFAULT border-black"
+          )}
+          width={width}
+          height={height}
+          onClick={props.onClick as unknown as MouseEventHandler<SVGSVGElement>}
         />
       )
     default:
