@@ -48,20 +48,7 @@ export const ChatSettings: FC<ChatSettingsProps> = ({}) => {
 
   if (!chatSettings) return null
 
-  const defaultModel: LLM = {
-    modelId: "gemini-pro",
-    modelName: "Gemini Pro",
-    provider: "google",
-    hostedId: "gemini-pro",
-    platformLink: "https://ai.google.dev/models/gemini",
-    imageInput: false,
-    pricing: {
-      currency: "USD",
-      unit: "1M tokens",
-      inputCost: 0.00025,
-      outputCost: 0.0005
-    }
-  }
+
 
   const allModels = [
     ...models.map(model => ({
@@ -72,10 +59,7 @@ export const ChatSettings: FC<ChatSettingsProps> = ({}) => {
       platformLink: "",
       imageInput: false
     })),
-    ...availableHostedModels,
-    ...availableLocalModels,
-    ...availableOpenRouterModels,
-    defaultModel
+    ...availableHostedModels
   ]
 
   const fullModel = allModels.find(llm => llm.modelId === chatSettings.model)

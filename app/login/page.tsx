@@ -31,22 +31,22 @@ export default async function Login({
       }
     }
   )
-  const session = (await supabase.auth.getSession()).data.session
+  // const session = (await supabase.auth.getSession()).data.session
 
-  if (session) {
-    const { data: homeWorkspace, error } = await supabase
-      .from("workspaces")
-      .select("*")
-      .eq("user_id", session.user.id)
-      .eq("is_home", true)
-      .single()
+  // if (session) {
+  //   const { data: homeWorkspace, error } = await supabase
+  //     .from("workspaces")
+  //     .select("*")
+  //     .eq("user_id", session.user.id)
+  //     .eq("is_home", true)
+  //     .single()
 
-    if (!homeWorkspace) {
-      throw new Error(error.message)
-    }
+  //   if (!homeWorkspace) {
+  //     throw new Error(error.message)
+  //   }
 
-    return redirect(`/${homeWorkspace.id}/chat`)
-  }
+  //   return redirect(`/${homeWorkspace.id}/chat`)
+  // }
 
   const signIn = async (formData: FormData) => {
     "use server"

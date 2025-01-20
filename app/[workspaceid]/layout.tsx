@@ -7,7 +7,6 @@ import { getChatsByWorkspaceId } from "@/db/chats"
 import { getCollectionWorkspacesByWorkspaceId } from "@/db/collections"
 import { getFileWorkspacesByWorkspaceId } from "@/db/files"
 import { getFoldersByWorkspaceId } from "@/db/folders"
-import { getModelWorkspacesByWorkspaceId } from "@/db/models"
 import { getPresetWorkspacesByWorkspaceId } from "@/db/presets"
 import { getPromptWorkspacesByWorkspaceId } from "@/db/prompts"
 import { getAssistantImageFromStorage } from "@/db/storage/assistant-images"
@@ -26,6 +25,7 @@ interface WorkspaceLayoutProps {
 
 export default function WorkspaceLayout({ children }: WorkspaceLayoutProps) {
   const router = useRouter()
+  const [profile, setProfile] = useState<any>(null)
 
   const params = useParams()
   const searchParams = useSearchParams()
@@ -42,7 +42,6 @@ export default function WorkspaceLayout({ children }: WorkspaceLayoutProps) {
     setPresets,
     setPrompts,
     setTools,
-    setModels,
     selectedWorkspace,
     setSelectedWorkspace,
     setSelectedChat,
@@ -153,11 +152,9 @@ export default function WorkspaceLayout({ children }: WorkspaceLayoutProps) {
     const toolData = await getToolWorkspacesByWorkspaceId(workspaceId)
     setTools(toolData.tools)
 
-    const modelData = await getModelWorkspacesByWorkspaceId(workspaceId)
-    setModels(modelData.models)
-
     setChatSettings({
-      model: "gemini-pro" as LLMID,
+      // model: "gemini-pro" as LLMID,
+      model: "custom-model" as LLMID,
       prompt:
         workspace?.default_prompt ||
         "You are a friendly, helpful AI assistant.",

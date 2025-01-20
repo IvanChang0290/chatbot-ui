@@ -4,12 +4,14 @@ import { supabase } from "@/lib/supabase/browser-client"
 import { getProfileByUserId } from "@/db/profile"
 import { ChatbotUIContext } from "@/context/context"
 import { useContext, useEffect, useState } from "react"
+import { getModelWorkspacesByWorkspaceId } from "@/db/models"
 
 export default function HomePage() {
   const router = useRouter()
   const {
     profile,
     setProfile,
+    setModels,
   } = useContext(ChatbotUIContext)
 
   useEffect(() => {
@@ -35,12 +37,29 @@ export default function HomePage() {
           .single()
 
         if (workspace) {
+          const modelData = await getModelWorkspacesByWorkspaceId(workspace.id)
+          setModels([
+            {
+              id: "custom-model",
+              user_id: user.id,
+              name: "Custom Model",
+              model_id: "custom-model",
+              base_url: "",
+              api_key: "",
+              created_at: new Date().toISOString(),
+              context_length: 4096,
+              description: "Custom model configuration",
+              folder_id: null,
+              sharing: "private",
+              updated_at: null
+            },
+            ...modelData.models
+          ])
           router.push(`/${workspace.id}/chat`)
         }
         
       } catch (error) {
         console.error('Error:', error)
-        // Handle error appropriately
       }
     }
 

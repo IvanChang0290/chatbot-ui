@@ -128,26 +128,40 @@ export const GlobalState: FC<GlobalStateProps> = ({ children }) => {
       const profile = await fetchStartingData()
 
       if (profile) {
-        const hostedModelRes = await fetchHostedModels(profile)
-        if (!hostedModelRes) return
+        // Set default available models (Gemini Pro)
+        const defaultHostedModels: LLM[] = [{
+          modelId: "gemini-pro",
+          modelName: "Gemini Pro",
+          provider: "google",
+          hostedId: "gemini-pro",
+          platformLink: "https://ai.google.dev/models/gemini",
+          imageInput: false,
+          pricing: {
+            currency: "USD",
+            unit: "1M tokens",
+            inputCost: 0.00025,
+            outputCost: 0.0005
+          }
+        }]
 
-        setEnvKeyMap(hostedModelRes.envKeyMap)
-        setAvailableHostedModels(hostedModelRes.hostedModels)
+        // Set default custom model
+        const defaultCustomModels: Tables<"models">[] = [{
+          id: "custom-model",
+          user_id: profile.user_id,
+          name: "Custom Model",
+          model_id: "custom-model",
+          base_url: "",
+          api_key: "",
+          created_at: new Date().toISOString(),
+          context_length: 4096,
+          description: "Custom model configuration",
+          folder_id: null,
+          sharing: "private",
+          updated_at: null
+        }]
 
-        if (
-          profile["openrouter_api_key"] ||
-          hostedModelRes.envKeyMap["openrouter"]
-        ) {
-          const openRouterModels = await fetchOpenRouterModels()
-          if (!openRouterModels) return
-          setAvailableOpenRouterModels(openRouterModels)
-        }
-      }
-
-      if (process.env.NEXT_PUBLIC_OLLAMA_URL) {
-        const localModels = await fetchOllamaModels()
-        if (!localModels) return
-        setAvailableLocalModels(localModels)
+        setModels(defaultCustomModels)
+        setAvailableHostedModels(defaultHostedModels)
       }
     })()
   }, [])

@@ -26,7 +26,7 @@ export const RecommendedQuestions: FC<RecommendedQuestionsProps> = ({
       
       try {
         setIsLoading(true)
-        const url = `/api/recommend-questions${isNewMessage ? '?increment=true' : ''}`
+        const url = `/api/recommend-questions`
         const response = await fetch(url)
         if (!response.ok) {
           throw new Error('Failed to fetch questions')
@@ -43,7 +43,7 @@ export const RecommendedQuestions: FC<RecommendedQuestionsProps> = ({
     if (isVisible) {
       fetchQuestions()
     }
-  }, [isVisible, isNewMessage])
+  }, [isVisible])
 
   if (!isVisible) return null
 

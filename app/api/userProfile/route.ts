@@ -4,10 +4,10 @@ export async function GET() {
     try {
 
         const userProfile = {
-            company: '1',
-            department: '2',
-            position: '3',
-            permissions: '4'
+            company: '飛騰雲端系統股份有限公司',
+            department: 'xx部門',
+            position: 'xx職位',
+            permissions: '管理員'
         };
 
         return NextResponse.json(userProfile);

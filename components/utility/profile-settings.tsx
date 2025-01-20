@@ -94,15 +94,15 @@ export const ProfileSettings: FC<ProfileSettingsProps> = ({}) => {
               <div>{error}</div>
             ) : (
               <>
-                <div className="space-y-1">
+                {/* <div className="space-y-1">
                   <Label>Username</Label>
                   <div className="p-2 rounded-md bg-secondary">
                     {profile.username || "No username set"}
                   </div>
-                </div>
+                </div> */}
 
                 <div className="space-y-1">
-                  <Label>Chat Display Name</Label>
+                  <Label>用戶名稱</Label> 
                   <div className="p-2 rounded-md bg-secondary">
                     {profile.display_name || "No display name set"}
                   </div>

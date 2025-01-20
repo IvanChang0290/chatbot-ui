@@ -6,8 +6,6 @@ interface ChatbotUISVGProps {
 }
 
 export const ChatbotUISVG: FC<ChatbotUISVGProps> = ({ theme, scale = 1 }) => {
-  const width = 189 * scale
-  const height = 194 * scale
   return (
     // <svg
     //   width={189 * scale}
@@ -39,15 +37,15 @@ export const ChatbotUISVG: FC<ChatbotUISVGProps> = ({ theme, scale = 1 }) => {
 
 
       <svg
-      width={189 * scale}
-      height={194 * scale}
-      viewBox="0 0 189 194"
+      width={2000 * scale}
+      height={556 * scale}
+      viewBox="0 0 2000 556"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
 
     <image
-        href={theme === "dark" ? "/DARK_LOGO.png" : "/LIGHT_LOGO.png"} 
+        href={theme === "dark" ? "/DARK_LOGO.png" : "/Soar-Cloud-Logo.png"} 
         width="100%"
         height="100%"
         style={{
