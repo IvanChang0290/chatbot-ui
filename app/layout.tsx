@@ -10,10 +10,10 @@ import { ReactNode } from "react"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
-const APP_NAME = "新UI"
-const APP_DEFAULT_TITLE = "新UI"
-const APP_TITLE_TEMPLATE = "%s - 新UI"
-const APP_DESCRIPTION = "新UI PWA!"
+const APP_NAME = "soar_cloud_UI1"
+const APP_DEFAULT_TITLE = "soar_cloud_UI"
+const APP_TITLE_TEMPLATE = "%s - soar_cloud_UI"
+const APP_DESCRIPTION = "soar_cloud_UI PWA!"
 
 interface RootLayoutProps {
   children: ReactNode

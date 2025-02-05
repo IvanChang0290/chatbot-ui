@@ -11,6 +11,8 @@ import {
   SheetTitle,
   SheetTrigger
 } from "../ui/sheet"
+import { supabase } from "@/lib/supabase/browser-client"
+import { useRouter } from "next/navigation"
 
 interface ProfileSettingsProps {}
 
@@ -24,8 +26,17 @@ export const ProfileSettings: FC<ProfileSettingsProps> = ({}) => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
+  const router = useRouter()
+
   const handleSignOut = async () => {
     window.location.href = 'https://google.com';
+    return
+  }
+
+  const handleLogOut = async () => {
+    await supabase.auth.signOut()
+    router.push("/login")
+    router.refresh()
     return
   }
 
